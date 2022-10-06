@@ -70,6 +70,40 @@ namespace DarkRiftPlugins
                     e.Client.SendMessage(playerMessage, SendMode.Reliable);
                 }
             }
+
+            e.Client.MessageReceived += MovementMessageReceiveHandler;
+        }
+
+        private void MovementMessageReceiveHandler(object sender, MessageReceivedEventArgs e)
+        {
+            using (var message = e.GetMessage())
+            {
+                if (message.Tag == Tags.PlayerMoveTag)
+                {
+                    using (var reader = message.GetReader())
+                    {
+                        var newX = reader.ReadSingle();
+                        var newY = reader.ReadSingle();
+
+                        var currentPlayer = _players[e.Client];
+                        currentPlayer.X = newX;
+                        currentPlayer.Y = newY;
+
+                        using (var writer = DarkRiftWriter.Create())
+                        {
+                            writer.Write(currentPlayer.Id);
+                            writer.Write(currentPlayer.X);
+                            writer.Write(currentPlayer.Y);
+                            message.Serialize(writer);
+                        }
+
+                        foreach (var client in ClientManager.GetAllClients().Where(notCurrentPlayer => notCurrentPlayer != e.Client))
+                        {
+                            client.SendMessage(message, e.SendMode);
+                        }
+                    }
+                }
+            }
         }
     }
 }
