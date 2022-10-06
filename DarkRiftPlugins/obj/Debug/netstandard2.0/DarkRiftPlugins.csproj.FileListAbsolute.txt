@@ -1,0 +1,17 @@
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRiftPlugins.deps.json
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRiftPlugins.dll
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRiftPlugins.pdb
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.dll
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.Server.dll
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.pdb
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.xml
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.Server.pdb
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\bin\Debug\netstandard2.0\DarkRift.Server.xml
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.csproj.AssemblyReference.cache
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.AssemblyInfoInputs.cache
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.AssemblyInfo.cs
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.csproj.CoreCompileInputs.cache
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.csproj.CopyComplete
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.dll
+C:\Users\wizma\Desktop\DarkRiftTestPlugins\DarkRiftTestSolution\DarkRiftPlugins\obj\Debug\netstandard2.0\DarkRiftPlugins.pdb
