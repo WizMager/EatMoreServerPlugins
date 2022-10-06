@@ -82,10 +82,11 @@ namespace DarkRiftPlugins
                 {
                     using (var reader = message.GetReader())
                     {
-                        var newX = reader.ReadSingle();
-                        var newY = reader.ReadSingle();
+                        float newX = reader.ReadSingle();
+                        float newY = reader.ReadSingle();
 
                         var currentPlayer = _players[e.Client];
+                        
                         currentPlayer.X = newX;
                         currentPlayer.Y = newY;
 
