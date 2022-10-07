@@ -11,11 +11,30 @@ namespace DarkRiftPlugins
         public override Version Version => new Version(1, 0, 0);
         public override bool ThreadSafe => false;
         private const float MapWidth = 20;
-        private Dictionary<IClient, Player> _players = new Dictionary<IClient, Player>(); 
+        private readonly Dictionary<IClient, Player> _players = new Dictionary<IClient, Player>(); 
 
         public AgarPlayerManager(PluginLoadData pluginLoadData) : base(pluginLoadData)
         {
             ClientManager.ClientConnected += ClientConnected;
+            ClientManager.ClientDisconnected += ClientDisconnected;
+        }
+
+        private void ClientDisconnected(object sender, ClientDisconnectedEventArgs e)
+        {
+            _players.Remove(e.Client);
+
+            using (var writer = DarkRiftWriter.Create())
+            {
+                writer.Write(e.Client.ID);
+
+                using (var message = Message.Create(Tags.DespawnPlayerTag, writer))
+                {
+                    foreach (var client in ClientManager.GetAllClients())
+                    {
+                        client.SendMessage(message, SendMode.Reliable);
+                    }
+                }
+            }
         }
 
         private void ClientConnected(object sender, ClientConnectedEventArgs e)
