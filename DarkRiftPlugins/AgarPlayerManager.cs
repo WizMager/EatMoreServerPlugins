@@ -109,6 +109,18 @@ namespace DarkRiftPlugins
                         currentPlayer.X = newX;
                         currentPlayer.Y = newY;
 
+                        var foodManager = PluginManager.GetPluginByType<AgarFoodManager>();
+
+                        foreach (var food in foodManager.Food)
+                        {
+                            if (Math.Pow(currentPlayer.X - food.X, 2) + Math.Pow(currentPlayer.Y - food.Y, 2) < Math.Pow(currentPlayer.Radius, 2))
+                            {
+                                currentPlayer.Radius += food.Radius;
+                                SendRadiusUpdate(currentPlayer);
+                                foodManager.Eat(food);
+                            }
+                        }
+                        
                         using (var writer = DarkRiftWriter.Create())
                         {
                             writer.Write(currentPlayer.Id);
@@ -121,6 +133,22 @@ namespace DarkRiftPlugins
                         {
                             client.SendMessage(message, e.SendMode);
                         }
+                    }
+                }
+            }
+        }
+
+        private void SendRadiusUpdate(Player currentPlayer)
+        {
+            using (var writer = DarkRiftWriter.Create())
+            {
+                writer.Write(currentPlayer.Id);
+                writer.Write(currentPlayer.Radius);
+                using (var message = Message.Create(Tags.RadiusUpdateTag, writer))
+                {
+                    foreach (var client in ClientManager.GetAllClients())
+                    {
+                        client.SendMessage(message, SendMode.Reliable);
                     }
                 }
             }

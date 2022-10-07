@@ -9,7 +9,8 @@ namespace DarkRiftPlugins
     {
         public override Version Version => new Version(1, 0, 0);
         public override bool ThreadSafe => false;
-        private HashSet<FoodItem> _foodItems = new HashSet<FoodItem>();
+        public IEnumerable<FoodItem> Food => _foodItems;
+        private readonly HashSet<FoodItem> _foodItems = new HashSet<FoodItem>();
         private const float MapWidth = 20;
         private const int FoodItemCount = 20;
 
@@ -28,12 +29,11 @@ namespace DarkRiftPlugins
                     writer.Write(foodItem.Id);
                     writer.Write(foodItem.X);
                     writer.Write(foodItem.Y);
-                    writer.Write(foodItem.Radius);
                     writer.Write(foodItem.ColorR);
                     writer.Write(foodItem.ColorG);
                     writer.Write(foodItem.ColorB);
                 }
-
+            
                 using (var message = Message.Create(Tags.FoodItemSendTag, writer))
                 {
                     e.Client.SendMessage(message, SendMode.Reliable);
@@ -55,6 +55,33 @@ namespace DarkRiftPlugins
                     (byte) random.Next(0, 200)
                     );
                 _foodItems.Add(foodItem);
+            }
+        }
+
+        public void Eat(FoodItem food)
+        {
+            var random = new Random();
+            food.X = (float) random.NextDouble() * MapWidth - MapWidth / 2;
+            food.Y = (float) random.NextDouble() * MapWidth - MapWidth / 2;
+            food.ColorR = (byte) random.Next(0, 200);
+            food.ColorG = (byte) random.Next(0, 200);
+            food.ColorB = (byte) random.Next(0, 200);
+            
+            using (var writer = DarkRiftWriter.Create())
+            {
+                writer.Write(food.Id);
+                writer.Write(food.X);
+                writer.Write(food.Y);
+                writer.Write(food.ColorR);
+                writer.Write(food.ColorG);
+                writer.Write(food.ColorB);
+                using (var message = Message.Create(Tags.FoodEatTag, writer))
+                {
+                    foreach (var client in ClientManager.GetAllClients())
+                    {
+                        client.SendMessage(message, SendMode.Reliable);
+                    }
+                }
             }
         }
     }
