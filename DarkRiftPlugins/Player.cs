@@ -1,6 +1,6 @@
 ﻿namespace DarkRiftPlugins
 {
-    public class Player
+    public class Player : IEdible
     {
         public ushort Id { get; set; }
         public float X { get; set; }
