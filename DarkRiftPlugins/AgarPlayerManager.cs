@@ -121,6 +121,16 @@ namespace DarkRiftPlugins
                             }
                         }
                         
+                        foreach (var listPlayer in _players.Values)
+                        {
+                            if (listPlayer != currentPlayer && Math.Pow(currentPlayer.X - listPlayer.X, 2) + Math.Pow(currentPlayer.Y - listPlayer.Y, 2) < Math.Pow(currentPlayer.Radius, 2))
+                            {
+                                currentPlayer.Radius += listPlayer.Radius;
+                                SendRadiusUpdate(currentPlayer);
+                                Kill(listPlayer);
+                            }
+                        }
+                        
                         using (var writer = DarkRiftWriter.Create())
                         {
                             writer.Write(currentPlayer.Id);
@@ -136,6 +146,22 @@ namespace DarkRiftPlugins
                     }
                 }
             }
+        }
+
+        private void Kill(Player listPlayer)
+        {
+            using(var writer = DarkRiftWriter.Create())
+            {
+                writer.Write(listPlayer.Id);
+                using (var message = Message.Create(Tags.KillPlayerTag, writer))
+                {
+                    foreach (var client in ClientManager.GetAllClients())
+                    {
+                        client.SendMessage(message, SendMode.Reliable);
+                    }
+                }
+            }
+            ClientManager.GetClient(listPlayer.Id).Disconnect();
         }
 
         private void SendRadiusUpdate(Player currentPlayer)
