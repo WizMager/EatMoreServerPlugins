@@ -161,7 +161,6 @@ namespace DarkRiftPlugins
                     }
                 }
             }
-            ClientManager.GetClient(listPlayer.Id).Disconnect();
         }
 
         private void SendRadiusUpdate(Player currentPlayer)
